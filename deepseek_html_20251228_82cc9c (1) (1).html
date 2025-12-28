@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>کنترل کیفی سمپلر‌ها - شرکت آترا طب قومس</title>
+    <style>
+        * {
+            font-family: 'B Nazanin', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 15px;
+            color: #2c3e50;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1250px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            padding: 0;
+            overflow: hidden;
+        }
+        
+        /* هدر شرکت */
+        .company-header {
+            background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+            color: white;
+            padding: 25px 30px;
+            text-align: center;
+            border-bottom: 4px solid #ff6b35;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .company-header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 25px 25px;
+            opacity: 0.15;
+            z-index: 0;
+        }
+        
+        .company-name {
+            font-size: 30px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .company-subtitle {
+            font-size: 19px;
+            font-weight: 500;
+            opacity: 0.95;
+            color: #ffcc80;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .company-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-top: 15px;
+            font-size: 14px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 6px 12px;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .info-item i {
+            color: #ffcc80;
+            font-size: 16px;
+        }
+        
+        /* بخش فرم */
+        .form-container {
+            padding: 25px;
+        }
+        
+        .form-title {
+            text-align: center;
+            color: #1a237e;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e8eaf6;
+            font-size: 22px;
+            position: relative;
+            font-weight: bold;
+        }
+        
+        .form-title::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 120px;
+            height: 3px;
+            background: #ff6b35;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #5c6bc0;
+            margin-bottom: 25px;
+            font-size: 15px;
+        }
+        
+        .info-box {
+            background-color: #f8f9fa;
+            border-right: 4px solid #5c6bc0;
+            padding: 18px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .info-box h3 {
+            margin-top: 0;
+            color: #1a237e;
+            font-size: 17px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .info-box h3::before {
+            content: "📋";
+            font-size: 18px;
+        }
+        
+        .info-box p {
+            margin-bottom: 7px;
+            color: #444;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        
+        .header-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 20px;
+            background: #f5f7ff;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e1e8ff;
+        }
+        
+        .lab-info {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+            flex-grow: 1;
+        }
+        
+        .lab-info-item {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            min-width: 180px;
+        }
+        
+        .lab-info-item label {
+            font-weight: 600;
+            color: #1a237e;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .lab-info-item label::before {
+            content: "•";
+            color: #ff6b35;
+            font-size: 18px;
+        }
+        
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: all 0.3s;
+            background-color: #fff;
+        }
+        
+        input[type="text"]:focus, input[type="number"]:focus {
+            outline: none;
+            border-color: #5c6bc0;
+            box-shadow: 0 0 0 3px rgba(92, 107, 192, 0.1);
+        }
+        
+        /* جدول */
+        .table-container {
+            overflow-x: auto;
+            margin-top: 15px;
+            border-radius: 6px;
+            border: 1px solid #e1e8ff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 1050px;
+        }
+        
+        th {
+            background: linear-gradient(to bottom, #3f51b5, #303f9f);
+            color: white;
+            font-weight: 600;
+            text-align: center;
+            padding: 16px 12px;
+            border: 1px solid #3949ab;
+            white-space: nowrap;
+            font-size: 14px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        
+        td {
+            padding: 13px 10px;
+            border: 1px solid #e1e1e1;
+            text-align: center;
+            vertical-align: middle;
+            background-color: #fff;
+            font-size: 14px;
+        }
+        
+        tr:nth-child(even) td {
+            background-color: #f9fafe;
+        }
+        
+        tr:hover td {
+            background-color: #f0f3ff;
+        }
+        
+        .input-cell {
+            width: 120px;
+        }
+        
+        .status-cell {
+            width: 140px;
+            min-width: 140px;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            cursor: pointer;
+        }
+        
+        .checkbox-item input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+            accent-color: #4caf50;
+        }
+        
+        .checkbox-item span {
+            font-size: 13px;
+            color: #444;
+        }
+        
+        /* دکمه‌ها */
+        .buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-width: 150px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-save {
+            background: linear-gradient(to right, #4caf50, #388e3c);
+            color: white;
+        }
+        
+        .btn-save:hover {
+            background: linear-gradient(to right, #43a047, #2e7d32);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(76, 175, 80, 0.25);
+        }
+        
+        .btn-print {
+            background: linear-gradient(to right, #2196f3, #1565c0);
+            color: white;
+        }
+        
+        .btn-print:hover {
+            background: linear-gradient(to right, #1976d2, #0d47a1);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(33, 150, 243, 0.25);
+        }
+        
+        .btn-reset {
+            background: linear-gradient(to right, #f44336, #d32f2f);
+            color: white;
+        }
+        
+        .btn-reset:hover {
+            background: linear-gradient(to right, #e53935, #c62828);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(244, 67, 54, 0.25);
+        }
+        
+        .btn-export {
+            background: linear-gradient(to right, #ff9800, #f57c00);
+            color: white;
+        }
+        
+        .btn-export:hover {
+            background: linear-gradient(to right, #fb8c00, #ef6c00);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(255, 152, 0, 0.25);
+        }
+        
+        /* فوتر */
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #555;
+            font-size: 13px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            background-color: #f8f9ff;
+            padding: 20px;
+            border-radius: 0 0 10px 10px;
+            line-height: 1.8;
+        }
+        
+        .company-details {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            color: #444;
+        }
+        
+        .footer-note {
+            margin-top: 10px;
+            color: #666;
+            font-size: 12.5px;
+        }
+        
+        /* چاپ */
+        @media print {
+            .company-header {
+                background: #1a237e !important;
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+            
+            .buttons, .info-box, .add-row-btn {
+                display: none !important;
+            }
+            
+            body {
+                background-color: white;
+                padding: 5px;
+            }
+            
+            .container {
+                box-shadow: none;
+                border: 1px solid #ccc;
+            }
+            
+            th {
+                background: #3f51b5 !important;
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+        }
+        
+        /* موبایل */
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 20px 15px;
+            }
+            
+            .company-header {
+                padding: 20px 15px;
+            }
+            
+            .company-name {
+                font-size: 24px;
+            }
+            
+            .company-subtitle {
+                font-size: 16px;
+            }
+            
+            .company-info {
+                flex-direction: column;
+                gap: 10px;
+                align-items: center;
+            }
+            
+            .header-section {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .lab-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .lab-info-item {
+                min-width: 100%;
+            }
+            
+            th, td {
+                padding: 12px 8px;
+                font-size: 13px;
+            }
+            
+            button {
+                min-width: 130px;
+                padding: 10px 18px;
+                font-size: 14px;
+            }
+            
+            .buttons {
+                gap: 10px;
+            }
+        }
+        
+        /* دکمه جدید ردیف */
+        .add-row-btn {
+            background: linear-gradient(to right, #9c27b0, #7b1fa2);
+            color: white;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+        
+        .add-row-btn:hover {
+            background: linear-gradient(to right, #8e24aa, #6a1b9a);
+            transform: translateY(-2px);
+        }
+        
+        .delete-row-btn {
+            background: none;
+            border: none;
+            color: #f44336;
+            cursor: pointer;
+            font-size: 16px;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+        
+        .delete-row-btn:hover {
+            background-color: rgba(244, 67, 54, 0.1);
+        }
+        
+        /* استایل برای اعداد انگلیسی */
+        .english-font {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- هدر شرکت آترا طب قومس -->
+        <div class="company-header">
+            <h1 class="company-name">شرکت آترا طب قومس</h1>
+            <div class="company-subtitle">کنترل کیفی تجهیزات پزشکی و آزمایشگاهی</div>
+            
+            <div class="company-info">
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>سمنان - بلوار 17 شهریور، جنب دانشکده دندانپزشکی، مرکز رشد فناوری سلامت</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-phone"></i>
+                    <span>0910-032-1022</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>atra.teb@yahoo.com</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- بخش اصلی فرم -->
+        <div class="form-container">
+            <h2 class="form-title">فرم کنترل کیفی سمپلر‌های آزمایشگاهی</h2>
+            <div class="subtitle">بررسی عملکرد و کالیبراسیون پیپت‌ها (سمپلرها)</div>
+            
+            <div class="header-section">
+                <div class="lab-info">
+                    <div class="lab-info-item">
+                        <label><i class="fas fa-flask"></i> نام آزمایشگاه / بخش:</label>
+                        <input type="text" id="lab-name" placeholder="نام آزمایشگاه یا بخش">
+                    </div>
+                    <div class="lab-info-item">
+                        <label><i class="fas fa-calendar-alt"></i> تاریخ بررسی:</label>
+                        <input type="text" id="check-date" placeholder="1403/05/15" value="">
+                    </div>
+                    <div class="lab-info-item">
+                        <label><i class="fas fa-user-md"></i> مسئول کنترل کیفی:</label>
+                        <input type="text" id="qc-officer" placeholder="نام و نام خانوادگی">
+                    </div>
+                    <div class="lab-info-item">
+                        <label><i class="fas fa-id-badge"></i> شماره گزارش:</label>
+                        <input type="text" id="report-number" placeholder="QC-1403-001" value="QC-1403-001">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="info-box">
+                <h3>راهنمای استفاده از فرم کنترل کیفی</h3>
+                <p>1. اطلاعات شناسایی هر سمپلر را در ردیف مربوطه وارد نمایید.</p>
+                <p>2. میانگین وزن آب توزین شده (میلی‌گرم) را ثبت کنید. حجم به صورت خودکار محاسبه می‌شود.</p>
+                <p>3. مقادیر دقت (CV%) و صحت (انحراف%) را محاسبه و وارد نمایید.</p>
+                <p>4. وضعیت سمپلر با توجه به حدود مجاز به صورت خودکار بررسی خواهد شد.</p>
+                <p>5. پس از تکمیل اطلاعات، فرم را ذخیره یا چاپ نمایید.</p>
+            </div>
+            
+            <div class="table-container">
+                <table id="qc-table">
+                    <thead>
+                        <tr>
+                            <th>ردیف</th>
+                            <th>سریال و مدل سمپلر</th>
+                            <th>شماره اموال</th>
+                            <th>حجم نامی (µl)</th>
+                            <th>وزن میانگین آب (mg)</th>
+                            <th>حجم محاسبه‌شده (µl)</th>
+                            <th>دقت (CV%)</th>
+                            <th>صحت (انحراف%)</th>
+                            <th>وضعیت نهایی</th>
+                            <th>عملیات</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                        <!-- ردیف‌ها به صورت پویا اضافه می‌شوند -->
+                    </tbody>
+                </table>
+                <button type="button" class="add-row-btn" onclick="addNewRow()">
+                    <i class="fas fa-plus-circle"></i> افزودن ردیف جدید
+                </button>
+            </div>
+            
+            <div class="buttons">
+                <button class="btn-save" onclick="saveData()">
+                    <i class="fas fa-save"></i> ذخیره اطلاعات
+                </button>
+                <button class="btn-print" onclick="window.print()">
+                    <i class="fas fa-print"></i> چاپ فرم
+                </button>
+                <button class="btn-export" onclick="exportToExcel()">
+                    <i class="fas fa-file-excel"></i> خروجی Excel
+                </button>
+                <button class="btn-reset" onclick="resetForm()">
+                    <i class="fas fa-redo"></i> پاک کردن فرم
+                </button>
+            </div>
+        </div>
+        
+        <!-- فوتر -->
+        <div class="footer">
+            <div class="company-details">
+                <div class="detail-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>آدرس: سمنان - بلوار 17 شهریور، جنب دانشکده دندانپزشکی، مرکز رشد فناوری سلامت</span>
+                </div>
+                <div class="detail-item">
+                    <i class="fas fa-phone"></i>
+                    <span>تلفن: 0910-032-1022</span>
+                </div>
+                <div class="detail-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>ایمیل: atra.teb@yahoo.com</span>
+                </div>
+            </div>
+            <div class="footer-note">
+                این فرم جهت کنترل دوره‌ای کیفی سمپلر‌های آزمایشگاهی طراحی شده است. توصیه می‌شود کنترل کیفی هر ۶ ماه یکبار انجام شود.<br>
+                فرمت گزارش: شرکت آترا طب قومس - کنترل کیفی تجهیزات پزشکی و آزمایشگاهی
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // داده‌های اولیه
+        let rowCounter = 1;
+        
+        // تابع برای ایجاد یک ردیف جدید
+        function createRow(rowNum) {
+            return `
+                <tr id="row-${rowNum}">
+                    <td class="english-font">${rowNum}</td>
+                    <td class="input-cell">
+                        <input type="text" class="serial-model" placeholder="SN123 / P200" data-field="serial">
+                    </td>
+                    <td class="input-cell">
+                        <input type="text" class="asset-number english-font" placeholder="AM-245" data-field="asset">
+                    </td>
+                    <td class="input-cell">
+                        <input type="number" class="nominal-volume english-font" placeholder="200" value="200" data-field="nominal" min="1" step="1">
+                    </td>
+                    <td class="input-cell">
+                        <input type="number" class="avg-weight english-font" placeholder="199.5" data-field="weight" min="0" step="0.1">
+                    </td>
+                    <td class="input-cell">
+                        <input type="number" class="calc-volume english-font" placeholder="" readonly data-field="calc">
+                    </td>
+                    <td>
+                        <div style="margin-bottom: 8px;">
+                            <input type="number" class="precision-value english-font" placeholder="0.8" step="0.1" data-field="precision" style="margin-bottom: 8px; width: 100%;">
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 5px; justify-content: center;">
+                            <span style="font-size: 11px;">حد:</span>
+                            <input type="number" class="precision-limit english-font" value="1.0" step="0.1" style="width: 60px; font-size: 13px; padding: 4px;">
+                            <span style="font-size: 11px;">% ≤</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div style="margin-bottom: 8px;">
+                            <input type="number" class="accuracy-value english-font" placeholder="0.05" step="0.1" data-field="accuracy" style="margin-bottom: 8px; width: 100%;">
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 5px; justify-content: center;">
+                            <span style="font-size: 11px;">حد:</span>
+                            <input type="number" class="accuracy-limit english-font" value="1.0" step="0.1" style="width: 60px; font-size: 13px; padding: 4px;">
+                            <span style="font-size: 11px;">% ±</span>
+                        </div>
+                    </td>
+                    <td class="status-cell">
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" class="precision-check" data-field="precisionOk">
+                                <span>دقت قابل قبول</span>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" class="accuracy-check" data-field="accuracyOk">
+                                <span>صحت قابل قبول</span>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" class="final-status" data-field="finalOk">
+                                <span>سمپلر قابل استفاده</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <button type="button" class="delete-row-btn" onclick="deleteRow(${rowNum})" title="حذف ردیف">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            `;
+        }
+        
+        // تابع افزودن ردیف جدید
+        function addNewRow() {
+            rowCounter++;
+            const tableBody = document.getElementById('table-body');
+            tableBody.innerHTML += createRow(rowCounter);
+            attachRowEvents(rowCounter);
+        }
+        
+        // تابع حذف ردیف
+        function deleteRow(rowNum) {
+            if (rowCounter > 1) {
+                const row = document.getElementById(`row-${rowNum}`);
+                if (row) {
+                    row.remove();
+                    // به روز رسانی شماره ردیف‌ها
+                    updateRowNumbers();
+                }
+            } else {
+                alert("حداقل باید یک ردیف در جدول وجود داشته باشد.");
+            }
+        }
+        
+        // تابع به روز رسانی شماره ردیف‌ها
+        function updateRowNumbers() {
+            const rows = document.querySelectorAll('#table-body tr');
+            rowCounter = rows.length;
+            
+            rows.forEach((row, index) => {
+                const rowNum = index + 1;
+                row.id = `row-${rowNum}`;
+                row.cells[0].textContent = rowNum;
+                
+                // به روز رسانی تابع حذف
+                const deleteBtn = row.querySelector('.delete-row-btn');
+                if (deleteBtn) {
+                    deleteBtn.setAttribute('onclick', `deleteRow(${rowNum})`);
+                }
+            });
+        }
+        
+        // تابع اتصال رویدادها به ردیف
+        function attachRowEvents(rowNum) {
+            const row = document.getElementById(`row-${rowNum}`);
+            if (!row) return;
+            
+            const avgWeightInput = row.querySelector('.avg-weight');
+            const calcVolumeInput = row.querySelector('.calc-volume');
+            const nominalVolumeInput = row.querySelector('.nominal-volume');
+            const accuracyValueInput = row.querySelector('.accuracy-value');
+            const precisionValueInput = row.querySelector('.precision-value');
+            const precisionLimitInput = row.querySelector('.precision-limit');
+            const accuracyLimitInput = row.querySelector('.accuracy-limit');
+            const precisionCheck = row.querySelector('.precision-check');
+            const accuracyCheck = row.querySelector('.accuracy-check');
+            const finalStatusCheck = row.querySelector('.final-status');
+            
+            // محاسبه خودکار حجم بر اساس وزن
+            if (avgWeightInput && calcVolumeInput) {
+                avgWeightInput.addEventListener('input', function() {
+                    const weight = parseFloat(this.value);
+                    if (!isNaN(weight) && weight > 0) {
+                        // ضریب Z برای آب در دمای آزمایشگاه
+                        const zFactor = 1.003;
+                        const calculatedVolume = (weight * zFactor).toFixed(1);
+                        calcVolumeInput.value = calculatedVolume;
+                        
+                        // محاسبه خودکار صحت
+                        if (nominalVolumeInput && nominalVolumeInput.value && accuracyValueInput) {
+                            const nominalVolume = parseFloat(nominalVolumeInput.value);
+                            const accuracy = ((calculatedVolume - nominalVolume) / nominalVolume * 100).toFixed(2);
+                            accuracyValueInput.value = accuracy;
+                            checkRowStatus(rowNum);
+                        }
+                    }
+                });
+            }
+            
+            // محاسبه خودکار صحت با تغییر حجم نامی
+            if (nominalVolumeInput && accuracyValueInput && calcVolumeInput) {
+                nominalVolumeInput.addEventListener('input', function() {
+                    const nominalVolume = parseFloat(this.value);
+                    const calcVolume = parseFloat(calcVolumeInput.value);
+                    
+                    if (!isNaN(nominalVolume) && nominalVolume > 0 && !isNaN(calcVolume)) {
+                        const accuracy = ((calcVolume - nominalVolume) / nominalVolume * 100).toFixed(2);
+                        accuracyValueInput.value = accuracy;
+                        checkRowStatus(rowNum);
+                    }
+                });
+            }
+            
+            // بررسی وضعیت با تغییر دقت
+            if (precisionValueInput && precisionLimitInput) {
+                precisionValueInput.addEventListener('input', function() {
+                    checkRowStatus(rowNum);
+                });
+                
+                precisionLimitInput.addEventListener('input', function() {
+                    checkRowStatus(rowNum);
+                });
+            }
+            
+            // بررسی وضعیت با تغییر صحت
+            if (accuracyValueInput && accuracyLimitInput) {
+                accuracyValueInput.addEventListener('input', function() {
+                    checkRowStatus(rowNum);
+                });
+                
+                accuracyLimitInput.addEventListener('input', function() {
+                    checkRowStatus(rowNum);
+                });
+            }
+        }
+        
+        // تابع بررسی وضعیت ردیف
+        function checkRowStatus(rowNum) {
+            const row = document.getElementById(`row-${rowNum}`);
+            if (!row) return;
+            
+            const precisionValue = parseFloat(row.querySelector('.precision-value').value);
+            const accuracyValue = parseFloat(row.querySelector('.accuracy-value').value);
+            const precisionLimit = parseFloat(row.querySelector('.precision-limit').value);
+            const accuracyLimit = parseFloat(row.querySelector('.accuracy-limit').value);
+            const precisionCheck = row.querySelector('.precision-check');
+            const accuracyCheck = row.querySelector('.accuracy-check');
+            const finalStatusCheck = row.querySelector('.final-status');
+            
+            // بررسی دقت
+            if (!isNaN(precisionValue) && !isNaN(precisionLimit)) {
+                precisionCheck.checked = Math.abs(precisionValue) <= precisionLimit;
+            } else {
+                precisionCheck.checked = false;
+            }
+            
+            // بررسی صحت
+            if (!isNaN(accuracyValue) && !isNaN(accuracyLimit)) {
+                accuracyCheck.checked = Math.abs(accuracyValue) <= accuracyLimit;
+            } else {
+                accuracyCheck.checked = false;
+            }
+            
+            // بررسی وضعیت نهایی
+            finalStatusCheck.checked = precisionCheck.checked && accuracyCheck.checked;
+            
+            // تغییر رنگ ردیف بر اساس وضعیت
+            if (finalStatusCheck.checked) {
+                row.style.backgroundColor = '#f0fff4';
+            } else {
+                row.style.backgroundColor = '';
+            }
+        }
+        
+        // تابع ذخیره اطلاعات
+        function saveData() {
+            const labName = document.getElementById('lab-name').value || 'نامشخص';
+            const checkDate = document.getElementById('check-date').value || 'تاریخ نامشخص';
+            const qcOfficer = document.getElementById('qc-officer').value || 'نامشخص';
+            const reportNumber = document.getElementById('report-number').value || 'شماره نامشخص';
+            
+            const data = {
+                company: "شرکت آترا طب قومس",
+                labName: labName,
+                checkDate: checkDate,
+                qcOfficer: qcOfficer,
+                reportNumber: reportNumber,
+                samplers: []
+            };
+            
+            const rows = document.querySelectorAll('#table-body tr');
+            rows.forEach(row => {
+                const inputs = row.querySelectorAll('input[data-field]');
+                const sampler = {};
+                
+                inputs.forEach(input => {
+                    if (input.type === 'checkbox') {
+                        sampler[input.dataset.field] = input.checked;
+                    } else {
+                        sampler[input.dataset.field] = input.value;
+                    }
+                });
+                
+                data.samplers.push(sampler);
+            });
+            
+            // ذخیره در localStorage
+            localStorage.setItem('atratab_qc_data', JSON.stringify(data));
+            
+            // نمایش پیام موفقیت
+            alert(`✅ گزارش کنترل کیفی با شماره ${reportNumber} برای آزمایشگاه "${labName}" ذخیره شد.`);
+            
+            // نمایش خلاصه گزارش
+            const passedCount = data.samplers.filter(s => s.finalOk === true).length;
+            const totalCount = data.samplers.length;
+            
+            console.log('📊 خلاصه گزارش کنترل کیفی:', {
+                شرکت: data.company,
+                آزمایشگاه: data.labName,
+                تاریخ: data.checkDate,
+                'تعداد سمپلرها': totalCount,
+                'تعداد قابل قبول': passedCount,
+                'تعداد مردود': totalCount - passedCount
+            });
+        }
+        
+        // تابع خروجی به اکسل (CSV)
+        function exportToExcel() {
+            const labName = document.getElementById('lab-name').value || 'نامشخص';
+            const checkDate = document.getElementById('check-date').value || 'تاریخ نامشخص';
+            const reportNumber = document.getElementById('report-number').value || 'شماره نامشخص';
+            
+            // ایجاد یک رشته CSV
+            let csv = 'شرکت آترا طب قومس - کنترل کیفی تجهیزات پزشکی و آزمایشگاهی\n';
+            csv += 'آدرس: سمنان - بلوار 17 شهریور، جنب دانشکده دندانپزشکی، مرکز رشد فناوری سلامت\n';
+            csv += `تلفن: 0910-032-1022 | ایمیل: atra.teb@yahoo.com\n\n`;
+            
+            csv += `آزمایشگاه: ${labName}\n`;
+            csv += `تاریخ: ${checkDate}\n`;
+            csv += `شماره گزارش: ${reportNumber}\n\n`;
+            
+            csv += 'ردیف,سریال/مدل,شماره اموال,حجم نامی (µl),وزن میانگین (mg),حجم محاسبه‌شده (µl),دقت (CV%),حد دقت (%),صحت (انحراف%),حد صحت (%),وضعیت\n';
+            
+            const rows = document.querySelectorAll('#table-body tr');
+            rows.forEach((row, index) => {
+                const cells = row.cells;
+                const rowNum = index + 1;
+                const serial = cells[1].querySelector('input').value || '';
+                const asset = cells[2].querySelector('input').value || '';
+                const nominal = cells[3].querySelector('input').value || '';
+                const weight = cells[4].querySelector('input').value || '';
+                const calc = cells[5].querySelector('input').value || '';
+                const precision = cells[6].querySelector('.precision-value').value || '';
+                const precisionLimit = cells[6].querySelector('.precision-limit').value || '';
+                const accuracy = cells[7].querySelector('.accuracy-value').value || '';
+                const accuracyLimit = cells[7].querySelector('.accuracy-limit').value || '';
+                const status = cells[8].querySelector('.final-status').checked ? 'قابل قبول' : 'مردود';
+                
+                csv += `${rowNum},${serial},${asset},${nominal},${weight},${calc},${precision},${precisionLimit},${accuracy},${accuracyLimit},${status}\n`;
+            });
+            
+            csv += `\nتعداد کل سمپلرها: ${rows.length}\n`;
+            csv += `تعداد قابل قبول: ${Array.from(rows).filter(r => r.querySelector('.final-status').checked).length}\n`;
+            csv += `تعداد مردود: ${Array.from(rows).filter(r => !r.querySelector('.final-status').checked).length}\n`;
+            csv += `\nامضا مسئول کنترل کیفی: _________________\n`;
+            csv += `تاریخ: ${checkDate}`;
+            
+            // ایجاد فایل و دانلود
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            
+            link.href = url;
+            link.download = `QC_Report_${reportNumber}_${checkDate.replace(/\//g, '-')}.csv`;
+            link.click();
+            
+            URL.revokeObjectURL(url);
+            
+            alert('✅ فایل خروجی با فرمت CSV آماده شد.');
+        }
+        
+        // تابع پاک کردن فرم
+        function resetForm() {
+            if (confirm('آیا مطمئن هستید که می‌خواهید همه اطلاعات فرم را پاک کنید؟')) {
+                document.getElementById('lab-name').value = '';
+                document.getElementById('qc-officer').value = '';
+                document.getElementById('report-number').value = 'QC-1403-001';
+                
+                // پاک کردن ردیف‌ها و ایجاد مجدد
+                const tableBody = document.getElementById('table-body');
+                tableBody.innerHTML = '';
+                
+                // ایجاد 3 ردیف اولیه
+                for (let i = 1; i <= 3; i++) {
+                    tableBody.innerHTML += createRow(i);
+                }
+                
+                rowCounter = 3;
+                
+                // اتصال رویدادها
+                for (let i = 1; i <= rowCounter; i++) {
+                    attachRowEvents(i);
+                }
+                
+                alert('✅ فرم با موفقیت پاک و به حالت اولیه بازگردانده شد.');
+            }
+        }
+        
+        // تابع تبدیل تاریخ میلادی به شمسی (ساده شده)
+        function getCurrentPersianDate() {
+            const now = new Date();
+            const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+            return now.toLocaleDateString('fa-IR', options);
+        }
+        
+        // مقداردهی اولیه صفحه
+        document.addEventListener('DOMContentLoaded', function() {
+            // ایجاد 3 ردیف اولیه
+            const tableBody = document.getElementById('table-body');
+            for (let i = 1; i <= 3; i++) {
+                tableBody.innerHTML += createRow(i);
+            }
+            
+            // اتصال رویدادها به ردیف‌ها
+            for (let i = 1; i <= rowCounter; i++) {
+                attachRowEvents(i);
+            }
+            
+            // تنظیم تاریخ امروز به صورت خودکار
+            const todayPersian = getCurrentPersianDate();
+            document.getElementById('check-date').value = todayPersian;
+            
+            // بارگذاری داده‌های ذخیره شده
+            const savedData = localStorage.getItem('atratab_qc_data');
+            if (savedData) {
+                try {
+                    const data = JSON.parse(savedData);
+                    
+                    if (confirm('آیا می‌خواهید داده‌های ذخیره شده قبلی را بارگذاری کنید؟')) {
+                        document.getElementById('lab-name').value = data.labName || '';
+                        document.getElementById('check-date').value = data.checkDate || todayPersian;
+                        document.getElementById('qc-officer').value = data.qcOfficer || '';
+                        document.getElementById('report-number').value = data.reportNumber || 'QC-1403-001';
+                    }
+                } catch (e) {
+                    console.log('خطا در بارگذاری داده‌های ذخیره شده');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
